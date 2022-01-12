@@ -1,38 +1,136 @@
-.App {
-  text-align: center;
+* {
+    margin: 0;
+    padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+div {
+    box-sizing: border-box;
+
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/******************** Layout ****************************/
+
+
+.layout_app {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    background: linear-gradient(blue, pink) !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/******************** Container ****************************/
+
+.container {
+    height: 100vh;
+    width: 90vw;
+    margin: 0 auto;
+    background: linear-gradient(blue, pink) !important;
 }
 
-.App-link {
-  color: #61dafb;
+/******************** Header ****************************/
+
+.header {
+    display: flex;
+    margin: 20px auto;
+    height: 10vh;
+    width: 90vw;
+    padding: 5px 10px;
+    color: #fff;
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255, 0.1) !important;
+
+    align-items: center;
+    justify-content: space-between;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn_header {
+    margin-left: 20px;
+    background-color: rgb(255, 255, 255, 0.5) !important;
+    border: none !important;
 }
+
+/******************** Content ****************************/
+
+.content {
+    height: 80vh !important;
+    background-color: rgb(255, 255, 255, 0.1) !important;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.content_active {
+    height: 79vh !important;
+    background-color: rgb(255, 255, 255, 0.3) !important;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/******************** Sider ****************************/
+
+.sider {
+    height: 79vh !important;
+    margin-right: 20px;
+    background-color: rgb(255, 255, 255, 0.3) !important;
+    border-radius: 20px;
+    padding: 20px 20px;
+}
+
+/******************* Auth page **************************/
+
+
+.auth_content {
+    margin: 40px auto;
+    padding: 20px 80px;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form_auth {
+    display: flex;
+    width: 200%;
+    flex-direction: column;
+    padding: 10px 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.title_auth_page {
+    color: #ccc;
+}
+
+.input_auth_page {
+    width: 35% !important;
+    margin-bottom: 10px !important;
+}
+
+.btn_auth_page {
+    width: 80px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

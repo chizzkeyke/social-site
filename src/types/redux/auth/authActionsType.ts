@@ -1,4 +1,4 @@
-export interface AuthActionsTypes {
+export default interface AuthActionsInterface {
    type: string
-   payload: []
+   payload?: string[]
 }
