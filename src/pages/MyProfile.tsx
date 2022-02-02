@@ -1,9 +1,10 @@
 import React from 'react'
 
-export const Posts = () => {
+export const MyProfile = () => {
    return (
       <div>
-         PageTodo
+         My profile
       </div>
    )
 }
+

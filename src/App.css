@@ -45,13 +45,21 @@ div {
 
 .btn_header {
     margin-left: 20px;
-    background-color: rgb(255, 255, 255, 0.5) !important;
+    background-color: rgba(255, 255, 255, 0.5) !important;
     border: none !important;
+    transition: background-color 0.3s linear;
+}
+
+.btn_header:hover {
+    background-color: rgba(190, 174, 241, 0.45) !important;
 }
 
 /******************** Content ****************************/
 
 .content {
+    display: flex;
+    /*flex-wrap: wrap;*/
+    flex-direction: row !important;
     height: 80vh !important;
     background-color: rgb(255, 255, 255, 0.1) !important;
     border-radius: 20px;
@@ -60,7 +68,8 @@ div {
 }
 
 .content_active {
-    height: 79vh !important;
+    /*display: flex;*/
+    height: auto !important;
     background-color: rgb(255, 255, 255, 0.3) !important;
     border-radius: 20px;
     padding: 20px;
@@ -69,16 +78,45 @@ div {
 
 /******************** Sider ****************************/
 
-.sider {
-    height: 79vh !important;
+.sider{
+    opacity: 0;
+    width: 0;
+    height: auto !important;
+    text-align: center;
+    transition: all 0.5s linear !important;
+}
+
+.sider.open  {
+    /*display: flex;*/
+    width: 200px !important;
+    opacity: 1;
+    height: auto !important;
     margin-right: 20px;
     background-color: rgb(255, 255, 255, 0.3) !important;
     border-radius: 20px;
-    padding: 20px 20px;
+    padding: 0 0;
+    text-align: center;
+    transition: all 0.5s linear;
+}
+
+.sider_nav_links {
+    color:#ccc;
+    padding-top: 12px;
+    list-style-type: none;
+    border-bottom: rgb(255, 255, 255, 0.1) solid;
+    height: 50px;
+    transition: all 0.3s linear;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.sider_nav_links:hover {
+    background-color: white;
+    border-radius: 20px;
+    color: rgb(29, 29, 29, 0.9);
 }
 
 /******************* Auth page **************************/
-
 
 .auth_content {
     margin: 40px auto;
@@ -112,12 +150,75 @@ div {
 }
 
 
+/********************************** Loader ************************************/
 
+.lds-circle {
+    display: inline-block;
+    transform: translateZ(1px);
+}
+.lds-circle > div {
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    background: #fff;
+    animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+@keyframes lds-circle {
+    0%, 100% {
+        animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
+    }
+    0% {
+        transform: rotateY(0deg);
+    }
+    50% {
+        transform: rotateY(1800deg);
+        animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+    }
+    100% {
+        transform: rotateY(3600deg);
+    }
+}
 
+/************************************** Post Page ******************************************/
 
+.post_page_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 
+}
 
+.post_container {
+    margin: 5px;
+    display: flex;
+    width: 200px;
+    height: 300px;
 
+    border-radius: 20px;
+    transition: opacity 0.5s;
+    border: 1px solid #ccc;
+    flex-direction: column;
+}
+
+.post_container:hover {
+    opacity: 0.4;
+    transition: opacity 0.5s;
+}
+
+.post_title {
+    padding-top: 30px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    height: calc(60%);
+}
+
+.post_body {
+    text-align: center;
+    padding: 5px;
+}
 
 
 

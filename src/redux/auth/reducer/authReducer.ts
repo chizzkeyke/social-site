@@ -1,31 +1,39 @@
-import authReducerInterface from '../../../types/redux/auth/authReducerType'
+import { AuthStateInterface } from '../../../types/redux/auth/authReducerType'
 import authActionInterface from '../../../types/redux/auth/authActionsType'
-import { START_AUTH, SUCCESS_AUTH, ERROR_AUTH } from '../actions/constantsAuth'
+import { AuthUserActions } from '../../../types/redux/auth/authActionsType'
 
-const initialStateAuthReducer: authReducerInterface = {
+const token = localStorage.getItem('token')
+const initialStateAuthReducer: AuthStateInterface = token ? {
+   auth: true,
+   loading: false,
+   error: null,
+   token
+} : {
    auth: false,
    loading: false,
-   errors: null
+   error: null,
+   token: null
 }
 
 export const authReducer = (state = initialStateAuthReducer, action: authActionInterface) => {
    switch (action.type) {
-      case START_AUTH: {
+      case AuthUserActions.START_AUTH: {
          return {
             ...state,
             loading: true
          }
       }
 
-      case SUCCESS_AUTH: {
+      case AuthUserActions.SUCCESS_AUTH: {
          return {
             ...state,
             auth: true,
-            loading: false
+            loading: false,
+            token: action.payload
          }
       }
 
-      case ERROR_AUTH: {
+      case AuthUserActions.ERROR_AUTH: {
          return {
             ...state,
             loading: false,

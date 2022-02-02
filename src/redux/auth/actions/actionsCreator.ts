@@ -1,22 +1,21 @@
-import { START_AUTH, SUCCESS_AUTH, ERROR_AUTH } from './constantsAuth'
-import authActionInterface from '../../../types/redux/auth/authActionsType'
+import { AuthActions, AuthUserActions } from '../../../types/redux/auth/authActionsType'
 
-export const startAuthUser = (): authActionInterface => {
+export const startAuthUser = (): AuthActions => {
    return {
-      type: START_AUTH
+      type: AuthUserActions.START_AUTH
    }
 }
 
-export const successAuthUser = (token: string): authActionInterface => {
+export const successAuthUser = (token: string): AuthActions => {
    return {
-      type: SUCCESS_AUTH,
-      payload: [token]
+      type: AuthUserActions.SUCCESS_AUTH,
+      payload: token
    }
 }
 
-export const errorAuthUser = (error: string): authActionInterface => {
+export const errorAuthUser = (error: string | unknown): AuthActions => {
    return {
-      type: ERROR_AUTH,
-      payload: [error]
+      type: AuthUserActions.ERROR_AUTH,
+      payload: error
    }
 }

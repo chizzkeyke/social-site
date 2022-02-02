@@ -1,6 +1,7 @@
-export default interface AuthReducerInterface {
-   auth: boolean
-   loading: boolean
-   errors: string[] | null
+export interface AuthStateInterface {
+   auth: boolean | any
+   loading: boolean | any
+   error: string[] | null
+   token: string | null
 }
 

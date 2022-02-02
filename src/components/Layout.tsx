@@ -1,49 +1,31 @@
 import React from 'react'
-import { Outlet, Link } from 'react-router-dom'
-
-
-import { Layout, Button } from 'antd'
-import { UnorderedListOutlined } from '@ant-design/icons'
+import { Outlet } from 'react-router-dom'
+import { Layout } from 'antd'
 import 'antd/dist/antd.css'
-
-const {Header, Sider, Content} = Layout
+import { Sider } from './Sider'
+import { SiderPropsLinksInterface } from '../types/components/Sider'
+import { HeaderLayout } from './HeaderLayout'
 
 export const LayoutComponent = () => {
-   const [activeSideBar, setActiveSideBar] = React.useState<boolean>(false)
+   const {Content} = Layout
+   const [isOpen, setIsOpen] = React.useState<boolean>(false)
 
-   const toggleSidebar = () => {
-      setActiveSideBar(!activeSideBar)
+   const links: SiderPropsLinksInterface[] = [
+      {path: '/', namePath: 'Home'},
+      {path: '/post', namePath: 'News'},
+      {path: '/register', namePath: 'Register'}
+   ]
+
+   const openSider = () => {
+      setIsOpen(!isOpen)
    }
 
    return (
       <Layout className={'layout_app'}>
          <Layout className={'container'}>
-            <Header className={'header'}>
-               <div className={'logo_header'}>
-                  <Button
-                     type="primary"
-                     icon={<UnorderedListOutlined/>}
-                     size={'large'}
-                     className={'btn_header'}
-                     onClick={toggleSidebar}
-                  />
-               </div>
-               <div className={'header_content'}>
-                  <Link to={'/login'}>
-                     <Button type={'primary'} shape={'round'} size={'large'} className={'btn_header'}>
-                        Sign In
-                     </Button>
-                  </Link>
-                  <Link to={'/register'}>
-                     <Button type={'primary'} shape={'round'} size={'large'} className={'btn_header'}>
-                        Sign up
-                     </Button>
-                  </Link>
-
-               </div>
-            </Header>
+            <HeaderLayout open={openSider}/>
             <Layout className={'content'}>
-               {activeSideBar ? <Sider className={'sider'}>Sider</Sider> : null}
+               <Sider isOpen={isOpen} links={links}/>
                <Content className={'content_active'}>
                   <Outlet/>
                </Content>
