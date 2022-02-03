@@ -38,7 +38,7 @@ interface PostActionErrorInterface {
 
 export type PostEnumActions = PostActionStartInterface | PostActionSuccessInterface | PostActionErrorInterface
 
-const postReducer = (state = initialStatePosts, action: PostEnumActions) => {
+export const postReducer = (state = initialStatePosts, action: PostEnumActions) => {
    switch (action.type) {
       case PostActions.START_FETCH_POSTS: {
          return {
@@ -59,6 +59,9 @@ const postReducer = (state = initialStatePosts, action: PostEnumActions) => {
             loader: false,
             errors: action.payload
          }
+      }
+      default: {
+         return state
       }
    }
 }

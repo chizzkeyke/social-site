@@ -6,6 +6,7 @@ import { PostPage } from './pages/PostPage'
 import { Home } from './pages/Home'
 import { LayoutComponent } from './components/Layout'
 import { MyProfile } from './pages/MyProfile'
+import { CreatePostPage } from './pages/NewPost'
 
 export const App: React.FC = (): JSX.Element => {
    return (
@@ -17,6 +18,7 @@ export const App: React.FC = (): JSX.Element => {
                <Route path={'/login'} element={<Auth/>}/>
                <Route path={'/post'} element={<PostPage/>}/>
                <Route path={'/my-profile'} element={<MyProfile/>}/>
+               <Route path={'/new-post'} element={<CreatePostPage />}/>
             </Route>
          </Routes>
       </BrowserRouter>
