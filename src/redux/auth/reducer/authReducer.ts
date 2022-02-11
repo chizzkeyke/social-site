@@ -1,5 +1,5 @@
 import { AuthStateInterface } from '../../../types/redux/auth/authReducerType'
-import authActionInterface from '../../../types/redux/auth/authActionsType'
+import { AuthActions } from '../../../types/redux/auth/authActionsType'
 import { AuthUserActions } from '../../../types/redux/auth/authActionsType'
 
 const token = localStorage.getItem('token')
@@ -15,7 +15,7 @@ const initialStateAuthReducer: AuthStateInterface = token ? {
    token: null
 }
 
-export const authReducer = (state = initialStateAuthReducer, action: authActionInterface) => {
+export const authReducer = (state = initialStateAuthReducer, action: AuthActions): AuthStateInterface => {
    switch (action.type) {
       case AuthUserActions.START_AUTH: {
          return {

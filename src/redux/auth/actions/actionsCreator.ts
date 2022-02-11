@@ -13,7 +13,7 @@ export const successAuthUser = (token: string): AuthActions => {
    }
 }
 
-export const errorAuthUser = (error: string | unknown): AuthActions => {
+export const errorAuthUser = (error: string | string[]): AuthActions => {
    return {
       type: AuthUserActions.ERROR_AUTH,
       payload: error

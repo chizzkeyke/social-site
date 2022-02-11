@@ -10,7 +10,8 @@ interface HeaderLayoutPropsInterface {
 
 export const HeaderLayout = ({open}: HeaderLayoutPropsInterface) => {
    const {Header} = Layout
-   const isAuth = useTypedSelector(state => state.auth.auth)
+   const {auth} = useTypedSelector(state => state.auth)
+   const {username} = useTypedSelector(state => state.user)
 
    return (
       <Header className={'header'}>
@@ -25,11 +26,12 @@ export const HeaderLayout = ({open}: HeaderLayoutPropsInterface) => {
          </div>
          <div className={'header_content'}>
             {
-               isAuth
+               auth
                   ? (
-                     <>
-                        <Link to={'/my-profile'} className={"profile_avatar"}><Avatar icon={<UserOutlined/>}/></Link>
-                     </>
+                        <div className={'header_avatar'}>
+                           <div>Welcome {username}</div>
+                           <Link to={'/my-profile'} className={'profile_avatar'}><Avatar icon={<UserOutlined/>}/></Link>
+                        </div>
                   )
                   : (
                      <>

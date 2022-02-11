@@ -1,7 +1,7 @@
 export interface AuthStateInterface {
-   auth: boolean | any
-   loading: boolean | any
-   error: string[] | null
+   auth: boolean
+   loading: boolean
+   error: string[] | [] | null | string | unknown
    token: string | null
 }
 

@@ -1,44 +1,14 @@
-interface PostInterface {
-   title: string
-   body: string
-   author: string
-}
-
-interface PostStateInterface {
-   posts: PostInterface[] | null
-   loader: boolean,
-   errors: any[] | null
-}
+import { PostInterface, PostStateInterface } from '../../../types/redux/posts/postsReducerType'
+import { PostActions, PostEnumActions } from '../../../types/redux/posts/postsActionsType'
 
 const initialStatePosts: PostStateInterface = {
-   posts: null,
+   posts: [],
+   post: null,
    loader: false,
    errors: null
 }
 
-enum PostActions {
-   START_FETCH_POSTS = 'start fetch posts',
-   SUCCESS_FETCH_POSTS = 'success fetch posts',
-   ERROR_FETCH_POSTS = 'error fetch posts'
-}
-
-interface PostActionStartInterface {
-   type: PostActions.START_FETCH_POSTS
-}
-
-interface PostActionSuccessInterface {
-   type: PostActions.SUCCESS_FETCH_POSTS,
-   payload: PostInterface[] | unknown
-}
-
-interface PostActionErrorInterface {
-   type: PostActions.ERROR_FETCH_POSTS,
-   payload: string[] | unknown
-}
-
-export type PostEnumActions = PostActionStartInterface | PostActionSuccessInterface | PostActionErrorInterface
-
-export const postReducer = (state = initialStatePosts, action: PostEnumActions) => {
+export const postReducer = (state:PostStateInterface = initialStatePosts, action: PostEnumActions): PostStateInterface => {
    switch (action.type) {
       case PostActions.START_FETCH_POSTS: {
          return {
@@ -46,6 +16,7 @@ export const postReducer = (state = initialStatePosts, action: PostEnumActions) 
             loader: true
          }
       }
+
       case PostActions.SUCCESS_FETCH_POSTS: {
          return {
             ...state,
@@ -53,6 +24,22 @@ export const postReducer = (state = initialStatePosts, action: PostEnumActions) 
             posts: action.payload
          }
       }
+
+      case PostActions.CHECK_ONE_POST: {
+         return {
+            ...state,
+            loader: false,
+            post: action.payload
+         }
+      }
+
+      case PostActions.CLEAR_ONE_POST: {
+         return {
+            ...state,
+            post: null
+         }
+      }
+
       case PostActions.ERROR_FETCH_POSTS: {
          return {
             ...state,
@@ -60,6 +47,48 @@ export const postReducer = (state = initialStatePosts, action: PostEnumActions) 
             errors: action.payload
          }
       }
+
+      case PostActions.CREATE_NEW_POST: {
+         const {title, body, author, id} = action.payload
+
+         const newPost: PostInterface = {
+            id,
+            title,
+            body,
+            author
+         }
+
+         return {
+            ...state,
+            posts: [...state.posts, newPost]
+         }
+      }
+
+      case PostActions.UPDATE_POST: {
+         const {id, body} = action.payload
+
+         return {
+            ...state,
+            posts: state.posts?.map((post) => {
+               if (post.id === id) {
+                  return {
+                     ...post,
+                     body,
+                  }
+               }
+               return post
+            })
+         }
+      }
+
+      case PostActions.DELETE_POST: {
+         const id = action.payload
+         return {
+            ...state,
+            posts: state.posts.filter(post => post.id !== id)
+         }
+      }
+
       default: {
          return state
       }

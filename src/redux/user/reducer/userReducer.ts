@@ -1,15 +1,30 @@
 import { UserStateReducer } from '../../../types/redux/user/userReducerType'
 import { UserDataAction, UserDataActions } from '../../../types/redux/user/userActionType'
 
-const initialStateUserReducer: UserStateReducer = {
-   username: null,
-   avatar: null,
-   created_post: null,
-   loading: false,
-   error: null
+const str: string | null = localStorage.getItem('userData')
+let userData
+
+if (str != null) {
+   userData = JSON.parse(str)
 }
 
-export const userReducer = (state = initialStateUserReducer, action: UserDataAction) => {
+const initialStateUserReducer: UserStateReducer = userData
+   ? {
+      username: userData.username,
+      avatar: null,
+      created_post: null,
+      loading: false,
+      error: null
+   }
+   : {
+      username: null,
+      avatar: null,
+      created_post: null,
+      loading: false,
+      error: null
+   }
+
+export const userReducer = (state = initialStateUserReducer, action: UserDataAction): UserStateReducer => {
    switch (action.type) {
       case UserDataActions.START_FETCH_USER_DATA: {
          return {
@@ -18,12 +33,10 @@ export const userReducer = (state = initialStateUserReducer, action: UserDataAct
          }
       }
       case UserDataActions.SUCCESS_FETCH_USER_DATA: {
-         const {username, avatar, created_post} = action.payload
+         const {username} = action.payload
          return {
             ...state,
             username,
-            avatar,
-            created_post,
             loading: false
          }
       }
@@ -35,6 +48,11 @@ export const userReducer = (state = initialStateUserReducer, action: UserDataAct
             loading: false
          }
       }
+
+      case UserDataActions.CLEAR_DATA_USER: {
+         return initialStateUserReducer
+      }
+
       default: {
          return state
       }

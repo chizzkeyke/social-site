@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Input } from 'antd'
 import { useLocation, Navigate } from 'react-router-dom'
-import { registerUser, loginUser } from '../DAL/registerUser'
+import { registerUser, loginUser } from '../DAL/authUser'
 import { useDispatch } from 'react-redux'
 import { useTypedSelector } from '../hooks/useTypedSelector'
 import { Loader } from '../components/Loader'
@@ -12,23 +12,19 @@ export const Auth: React.FC = (): JSX.Element => {
    const [password, setPassword] = React.useState<string>('')
    const [confirmPassword, setConfirmPassword] = React.useState<string>('')
 
-   const loading = useTypedSelector(state => state.auth.loading)
-   const isAuth = useTypedSelector(state => state.auth.auth)
+   const {auth, loading} = useTypedSelector(state => state.auth)
+   const {username} = useTypedSelector(state => state.user)
    const dispatch = useDispatch()
    const {pathname} = useLocation()
    const path: boolean = pathname === '/register'
    const title = path ? 'Register' : 'Login'
 
-   const disableButtonOnRegister = () => {
-      if (userName === '' || email === '' || password === '' || confirmPassword === '') {
-         return true
-      }
+   const disableButtonOnRegister = (): boolean => {
+      return userName === '' || email === '' || password === '' || confirmPassword === ''
    }
 
-   const disableButtonOnLogin = () => {
-      if (email === '' || password === '') {
-         return true
-      }
+   const disableButtonOnLogin = (): boolean => {
+      return email === '' || password === ''
    }
 
    const sendResponse = (): void => {
@@ -39,7 +35,11 @@ export const Auth: React.FC = (): JSX.Element => {
       }
    }
 
-   if (isAuth) {
+   if (auth) {
+      return <Navigate to={'/load-user-data'} />
+   }
+
+   if (auth && username) {
       return <Navigate to={'/'} />
    }
 

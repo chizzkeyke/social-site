@@ -5,3 +5,4 @@ export interface UserStateReducer {
    loading: boolean
    error: string | null
 }
+
