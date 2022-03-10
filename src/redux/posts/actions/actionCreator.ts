@@ -40,3 +40,24 @@ export const createFetchPost = (post: PostInterface): PostEnumActions => {
       payload: post
    }
 }
+
+export const updateFetchPost = (post: PostInterface): PostEnumActions => {
+   return {
+      type: PostActions.UPDATE_POST,
+      payload: post
+   }
+}
+
+export const getPostsAuthUser = (posts: PostInterface[]): PostEnumActions => {
+   return {
+      type: PostActions.GET_POSTS_AUTH_USER,
+      payload: posts
+   }
+}
+
+export const deletePost = (id: string): PostEnumActions => {
+   return {
+      type: PostActions.DELETE_POST,
+      payload: id
+   }
+}

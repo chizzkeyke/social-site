@@ -5,7 +5,8 @@ const initialStatePosts: PostStateInterface = {
    posts: [],
    post: null,
    loader: false,
-   errors: null
+   errors: null,
+   postsAuthUser: []
 }
 
 export const postReducer = (state:PostStateInterface = initialStatePosts, action: PostEnumActions): PostStateInterface => {
@@ -22,6 +23,14 @@ export const postReducer = (state:PostStateInterface = initialStatePosts, action
             ...state,
             loader: false,
             posts: action.payload
+         }
+      }
+
+      case PostActions.GET_POSTS_AUTH_USER: {
+         return {
+            ...state,
+            loader: false,
+            postsAuthUser: action.payload
          }
       }
 
@@ -85,7 +94,7 @@ export const postReducer = (state:PostStateInterface = initialStatePosts, action
          const id = action.payload
          return {
             ...state,
-            posts: state.posts.filter(post => post.id !== id)
+            postsAuthUser: state.postsAuthUser.filter(post => post.id !== id),
          }
       }
 

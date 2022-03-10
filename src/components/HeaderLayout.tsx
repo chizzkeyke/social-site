@@ -30,7 +30,7 @@ export const HeaderLayout = ({open}: HeaderLayoutPropsInterface) => {
                   ? (
                         <div className={'header_avatar'}>
                            <div>Welcome {username}</div>
-                           <Link to={'/my-profile'} className={'profile_avatar'}><Avatar icon={<UserOutlined/>}/></Link>
+                           <Link to={'/my-profile'} className={'profile_avatar'}><Avatar src="https://joeschmoe.io/api/v1/2" icon={<UserOutlined/>}/></Link>
                         </div>
                   )
                   : (

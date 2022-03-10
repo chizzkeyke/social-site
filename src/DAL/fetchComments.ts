@@ -1,9 +1,9 @@
 import { CommentsActions } from '../types/redux/comments/commentsActionsTypes'
 import { Dispatch } from 'redux'
-import { startFetchComments, successFetchComments, errorFetchComments } from '../redux/comments/actions/actionCreator'
+import { startFetchComments, successFetchComments, errorFetchComments, createNewComment } from '../redux/comments/actions/actionCreator'
 import axios from 'axios'
 
-export const fetchGetCommentsActionThunk = (idPost: string) =>
+export const fetchGetCommentsActionThunk = (idPost: string | undefined) =>
    async (dispatch: Dispatch<CommentsActions>) => {
       const token = localStorage.getItem('token')
       dispatch(startFetchComments())
@@ -21,7 +21,7 @@ export const fetchGetCommentsActionThunk = (idPost: string) =>
       }
    }
 
-export const fetchPostCommentActionThunk = (idPost: string, body: string, author: string) =>
+export const fetchPostCommentActionThunk = (idPost: string, body: string, author: string | null) =>
    async (dispatch: Dispatch<CommentsActions>) => {
       const token = localStorage.getItem('token')
       dispatch(startFetchComments())
@@ -38,9 +38,13 @@ export const fetchPostCommentActionThunk = (idPost: string, body: string, author
                author
             }
          })
-         dispatch(successFetchComments(response.data.data))
+         dispatch(createNewComment(response.data.data))
       } catch (e) {
          dispatch(errorFetchComments('Error Loading Data User'))
       }
    }
+
+export const fetchUpdateCommentActionThunk = () => (dispatch: Dispatch<CommentsActions>) => {
+
+}
 

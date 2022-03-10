@@ -1,8 +1,11 @@
+import {UserInterface} from './userReducerType'
+
 export enum UserDataActions {
    START_FETCH_USER_DATA = 'START_FETCH_USER_DATA',
    SUCCESS_FETCH_USER_DATA = 'SUCCESS_FETCH_USER_DATA',
    ERROR_FETCH_USER_DATA = 'ERROR_FETCH_USER_DATA',
-   CLEAR_DATA_USER = 'clear data user'
+   CLEAR_DATA_USER = 'clear data user',
+   GET_USERS = 'get users'
 }
 
 export interface ResponseDataInterface {
@@ -33,4 +36,14 @@ interface ClearDataUserAction {
    type: UserDataActions.CLEAR_DATA_USER
 }
 
-export type UserDataAction = StartFetchUserDataAction | SuccessFetchUserDataAction | ErrorFetchUserDataAction | ClearDataUserAction
+interface GetUsersAction {
+   type: UserDataActions.GET_USERS,
+   payload: UserInterface[]
+}
+
+export type UserDataAction =
+   StartFetchUserDataAction |
+   SuccessFetchUserDataAction |
+   ErrorFetchUserDataAction |
+   ClearDataUserAction |
+   GetUsersAction

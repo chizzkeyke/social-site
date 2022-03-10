@@ -12,7 +12,6 @@ export const LayoutComponent = () => {
    const [isOpen, setIsOpen] = React.useState<boolean>(false)
    const {auth} = useTypedSelector(state => state.auth)
 
-
    const links: SiderPropsLinksInterface[] = !auth
       ? [
          {path: '/', namePath: 'Home'},
@@ -23,11 +22,16 @@ export const LayoutComponent = () => {
          {path: '/', namePath: 'Home'},
          {path: '/new-post', namePath: 'CreateNewPost'},
          {path: '/update-post', namePath: 'UpdatePost'},
-         {path: '/posts', namePath: 'Posts'}
+         {path: '/posts', namePath: 'Posts'},
+         {path: '/chats', namePath: 'Chats'}
       ]
 
    const openSider = () => {
       setIsOpen(!isOpen)
+   }
+
+   const closeSider = () => {
+      setIsOpen(false)
    }
 
    return (
@@ -35,7 +39,7 @@ export const LayoutComponent = () => {
          <Layout className={'container'}>
             <HeaderLayout open={openSider}/>
             <Layout className={'content'}>
-               <Sider isOpen={isOpen} links={links}/>
+               <Sider isOpen={isOpen} links={links} isClose={closeSider}/>
                <Content className={'content_active'}>
                   <Outlet/>
                </Content>

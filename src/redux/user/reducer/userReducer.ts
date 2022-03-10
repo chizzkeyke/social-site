@@ -14,14 +14,16 @@ const initialStateUserReducer: UserStateReducer = userData
       avatar: null,
       created_post: null,
       loading: false,
-      error: null
+      error: null,
+      users: null
    }
    : {
       username: null,
       avatar: null,
       created_post: null,
       loading: false,
-      error: null
+      error: null,
+      users: null
    }
 
 export const userReducer = (state = initialStateUserReducer, action: UserDataAction): UserStateReducer => {
@@ -46,6 +48,13 @@ export const userReducer = (state = initialStateUserReducer, action: UserDataAct
             ...state,
             error,
             loading: false
+         }
+      }
+      case UserDataActions.GET_USERS: {
+         return {
+            ...state,
+            loading: false,
+            users: action.payload
          }
       }
 

@@ -9,6 +9,7 @@ import { MyProfile } from './pages/MyProfile'
 import { CreatePostPage } from './pages/NewPost'
 import { PageLoadUserData } from './pages/PageLoadUserData'
 import { SinglePostPage } from './pages/SinglePostPage'
+import { ChatPage } from './pages/ChatPage'
 
 export const App: React.FC = (): JSX.Element => {
    return (
@@ -24,6 +25,7 @@ export const App: React.FC = (): JSX.Element => {
                <Route path={'/new-post'} element={<CreatePostPage/>}/>
                <Route path={'/update-post'} element={<CreatePostPage/>}/>
                <Route path={'/load-user-data'} element={<PageLoadUserData/>}/>
+               <Route path={'/chats'} element={<ChatPage/>}/>
             </Route>
          </Routes>
       </BrowserRouter>

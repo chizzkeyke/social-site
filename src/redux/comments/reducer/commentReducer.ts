@@ -1,6 +1,5 @@
 import { commentsStateInterface } from '../../../types/redux/comments/commentsReducerType'
-import { CommentsActions } from '../../../types/redux/comments/commentsActionsTypes'
-import { commentsConstants } from '../../../types/redux/comments/commentsActionsTypes'
+import { CommentsActions, commentsConstants } from '../../../types/redux/comments/commentsActionsTypes'
 
 const initialStateCommentsReducer: commentsStateInterface = {
    comments: [],
@@ -30,6 +29,18 @@ export function commentsReducer(state = initialStateCommentsReducer, action: Com
             errors: action.payload
          }
       }
+      case commentsConstants.CREATE_NEW_COMMENT: {
+         return {
+            ...state,
+            loadingComments: false,
+            comments: [action.payload, ...state.comments]
+         }
+      }
+
+      case commentsConstants.CLEAR_COMMENTS: {
+         return initialStateCommentsReducer
+      }
+
 
       default: return state
    }

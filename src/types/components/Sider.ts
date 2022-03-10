@@ -6,4 +6,5 @@ export interface SiderPropsLinksInterface {
 export interface SiderPropsInterface {
    isOpen: boolean
    links: SiderPropsLinksInterface[]
+   isClose: () => void
 }

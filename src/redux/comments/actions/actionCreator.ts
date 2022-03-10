@@ -20,3 +20,16 @@ export const errorFetchComments = (error: string): CommentsActions => {
       payload: error
    }
 }
+
+export const createNewComment = (comment: CommentInterface): CommentsActions => {
+   return {
+      type: commentsConstants.CREATE_NEW_COMMENT,
+      payload: comment
+   }
+}
+
+export const clearComments = (): CommentsActions => {
+   return {
+      type: commentsConstants.CLEAR_COMMENTS
+   }
+}

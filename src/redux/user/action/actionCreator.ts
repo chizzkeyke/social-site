@@ -1,6 +1,5 @@
-import { UserDataAction, UserDataActions } from '../../../types/redux/user/userActionType'
-
-import {ResponseDataInterface} from '../../../types/redux/user/userActionType'
+import { ResponseDataInterface, UserDataAction, UserDataActions } from '../../../types/redux/user/userActionType'
+import { UserInterface } from '../../../types/redux/user/userReducerType'
 
 export function startFetchDataUser(): UserDataAction {
    return {
@@ -19,5 +18,12 @@ export function errorFetchDataUser(err: any) {
    return {
       type: UserDataActions.ERROR_FETCH_USER_DATA,
       payload: err
+   }
+}
+
+export function getUsers(users: UserInterface[]): UserDataAction {
+   return {
+      type: UserDataActions.GET_USERS,
+      payload: users
    }
 }

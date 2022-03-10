@@ -1,4 +1,5 @@
 import { PostInterface } from './postsReducerType'
+import { stat } from 'fs'
 
 export enum PostActions {
    START_FETCH_POSTS = 'start fetch posts',
@@ -8,7 +9,8 @@ export enum PostActions {
    UPDATE_POST = 'update post',
    DELETE_POST = 'delete post',
    CHECK_ONE_POST = 'check one post',
-   CLEAR_ONE_POST = 'clear one post'
+   CLEAR_ONE_POST = 'clear one post',
+   GET_POSTS_AUTH_USER = 'get posts auth user'
 }
 
 interface PostActionStartInterface {
@@ -46,7 +48,12 @@ interface PostActionUpdateInterface {
 
 interface PostActionDeleteInterface {
    type: PostActions.DELETE_POST,
-   payload: number
+   payload: string
+}
+
+interface PostActionGetPostsAuthUserInterface {
+   type: PostActions.GET_POSTS_AUTH_USER,
+   payload: PostInterface[]
 }
 
 export type PostEnumActions =
@@ -57,4 +64,5 @@ export type PostEnumActions =
    PostActionUpdateInterface |
    PostActionDeleteInterface |
    PostActionCheckOneInterface |
-   PostActionClearOnePost
+   PostActionClearOnePost |
+   PostActionGetPostsAuthUserInterface
